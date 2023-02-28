@@ -24,22 +24,23 @@ var cameraControls;
 var angulo = -0.01;
 
 init();
-loadBackground();
+// loadBackground();
 loadRectangle(1.0, 1.5, 1);
 loadRectangle(1.0, 1.5, -0.5);
 render();
 
 function init() {
-  renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer({ alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(new THREE.Color(0xFFFFFF));
+  renderer.setClearColor(new THREE.Color(0xffffff, 0));
   document.getElementById('container').appendChild(renderer.domElement);
 
   scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xffffff);
 
   var aspectRatio = window.innerWidth / window.innerHeight;
   camera = new THREE.PerspectiveCamera(50, aspectRatio, 0.1, 100);
-  camera.position.set(0, 0, 3);
+  camera.position.set(0, - 0.5, 3);
   camera.lookAt(0, 0, 0);
 
   cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -66,10 +67,10 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   var semiladoB = ladoB / 2.0;
   var coordenadas = [ // 6caras x 4vert x3coor = 72float
     // Front 
-    -semiladoA + offsetA, -semiladoB, 0.01, // 7 -> 0
+    -semiladoA + offsetA, -semiladoB, 0.01,  // 7 -> 0
     semiladoA + offsetA, -semiladoB, 0.01,  // 0 -> 1
     semiladoA + offsetA, semiladoB, 0.01,  // 3 -> 2
-    -semiladoA + offsetA, semiladoB, 0.01, // 4 -> 3
+    -semiladoA + offsetA, semiladoB, 0.01,  // 4 -> 3
   ]
   var colores = [ // 24 x3
     0, 0, 0,   // 7
@@ -98,7 +99,7 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   malla.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
 
   // Configura un material
-  var textura = new THREE.TextureLoader().load('images/ilovecg.png');
+  var textura = new THREE.TextureLoader().load('images/Earth.png');
   var material = new THREE.MeshLambertMaterial({ vertexColors: true, map: textura, side: THREE.DoubleSide });
 
   // Construye el objeto grafico 
@@ -125,7 +126,7 @@ function update() {
 }
 
 function render() {
-  //requestAnimationFrame(render);
+  requestAnimationFrame(render);
   //update();
   renderer.render(scene, camera);
 }
