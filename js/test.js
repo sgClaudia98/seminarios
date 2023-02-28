@@ -32,6 +32,7 @@ render();
 function init() {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(new THREE.Color(0xffffff));
   document.getElementById('container').appendChild(renderer.domElement);
 
   scene = new THREE.Scene();
@@ -95,7 +96,6 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   var material = new THREE.MeshBasicMaterial({
     vertexColors: false, side: THREE.DoubleSide,
     map: textura,
-    color: new THREE.Color(0x000000), combine: THREE.MultiplyOperation
   });
 
   // Construye el objeto grafico 
