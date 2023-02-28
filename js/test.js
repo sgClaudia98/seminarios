@@ -102,7 +102,7 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   var material = new THREE.MeshBasicMaterial({
     vertexColors: false, side: THREE.DoubleSide,
     map: THREE.ImageUtils.loadTexture('images/Earth.jpg'),
-    color: new THREE.Color(0xe01b24), combine: THREE.MultiplyOperation
+    color: new THREE.Color(0x000000), combine: THREE.MultiplyOperation
   });
 
   // Construye el objeto grafico 
