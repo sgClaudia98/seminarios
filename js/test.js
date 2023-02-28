@@ -30,13 +30,12 @@ loadRectangle(1.0, 1.5, -0.5);
 render();
 
 function init() {
-  renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(new THREE.Color(0xffffff, 0));
+  renderer.setClearColor(new THREE.Color(0xffffff));
   document.getElementById('container').appendChild(renderer.domElement);
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xffffff);
 
   var aspectRatio = window.innerWidth / window.innerHeight;
   camera = new THREE.PerspectiveCamera(50, aspectRatio, 0.1, 100);
@@ -100,7 +99,11 @@ function loadRectangle(ladoA, ladoB, offsetA) {
 
   // Configura un material
   var textura = new THREE.TextureLoader().load('images/Earth.jpg');
-  var material = new THREE.MeshLambertMaterial({ vertexColors: true, map: textura, side: THREE.DoubleSide });
+  var material = new THREE.MeshBasicMaterial({
+    vertexColors: false, side: THREE.DoubleSide,
+    map: THREE.ImageUtils.loadTexture('images/Earth.jpg'),
+    color: new THREE.Color(0xe01b24), combine: THREE.MultiplyOperation
+  });
 
   // Construye el objeto grafico 
   console.log(malla);   //-> Puedes consultar la estructura del objeto
