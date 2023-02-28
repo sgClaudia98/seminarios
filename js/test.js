@@ -99,7 +99,7 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   malla.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
 
   // Configura un material
-  var textura = new THREE.TextureLoader().load('images/Earth.png');
+  var textura = new THREE.TextureLoader().load('images/Earth.jpg');
   var material = new THREE.MeshLambertMaterial({ vertexColors: true, map: textura, side: THREE.DoubleSide });
 
   // Construye el objeto grafico 
