@@ -32,7 +32,6 @@ render();
 function init() {
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(new THREE.Color(0xffffff));
   document.getElementById('container').appendChild(renderer.domElement);
 
   scene = new THREE.Scene();
@@ -55,6 +54,7 @@ function loadBackground() {
     -24.0, 48.0, 0.0,
     24.0, 48.0, 0.0,
   ];
+
   scene.add(rectangle);
 }
 
@@ -70,12 +70,6 @@ function loadRectangle(ladoA, ladoB, offsetA) {
     semiladoA + offsetA, -semiladoB, 0.01,  // 0 -> 1
     semiladoA + offsetA, semiladoB, 0.01,  // 3 -> 2
     -semiladoA + offsetA, semiladoB, 0.01,  // 4 -> 3
-  ]
-  var colores = [ // 24 x3
-    0, 0, 0,   // 7
-    1, 0, 0,   // 0
-    1, 1, 0,   // 3
-    0, 1, 0,   // 4
   ]
   var normales = [ // 24 x3
     0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,      // Front
@@ -94,7 +88,6 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   malla.setIndex(indices);
   malla.setAttribute('position', new THREE.Float32BufferAttribute(coordenadas, 3));
   malla.setAttribute('normal', new THREE.Float32BufferAttribute(normales, 3));
-  malla.setAttribute('color', new THREE.Float32BufferAttribute(colores, 3));
   malla.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
 
   // Configura un material
