@@ -94,7 +94,7 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   var textura = new THREE.TextureLoader().load('images/Earth.jpg');
   var material = new THREE.MeshBasicMaterial({
     vertexColors: false, side: THREE.DoubleSide,
-    map: THREE.ImageUtils.loadTexture('images/Earth.jpg'),
+    map: textura,
     color: new THREE.Color(0x000000), combine: THREE.MultiplyOperation
   });
 
