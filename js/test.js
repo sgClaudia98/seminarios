@@ -54,18 +54,22 @@ function loadBackground() {
   var VBack = [
     -side, -side, 0.0,
     side, -side, 0.0,
-    -side, side, 0.0,
     side, side, 0.0,
+    -side, side, 0.0,
   ];
 
   var normales = [ // 24 x3
     0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,      // Front
   ];
 
-
+  var uvs = [  // 24 x2
+    // Front
+    0 / 4, 1 / 3, 1 / 4, 1 / 3, 1 / 4, 2 / 3, 0 / 4, 2 / 3, // 7,0,3,4
+  ];
 
   malla.setAttribute('position', new THREE.Float32BufferAttribute(VBack, 3));
   malla.setAttribute('normal', new THREE.Float32BufferAttribute(normales, 3));
+  malla.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
   // Configura un material
   var textura = new THREE.TextureLoader().load('images/wood512.jpg');
   var material = new THREE.MeshBasicMaterial({
