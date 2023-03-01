@@ -49,11 +49,13 @@ function init() {
 
 function loadBackground() {
   var malla = new THREE.BufferGeometry();
+  var side = 24.0 / 2
+
   var VBack = [
-    -24.0, 0.0, 0.0,
-    24.0, 0.0, 0.0,
-    -24.0, 48.0, 0.0,
-    24.0, 48.0, 0.0,
+    -side, -side, 0.0,
+    side, -side, 0.0,
+    -side, side, 0.0,
+    side, side, 0.0,
   ];
 
   var normales = [ // 24 x3
@@ -65,7 +67,7 @@ function loadBackground() {
   malla.setAttribute('position', new THREE.Float32BufferAttribute(VBack, 3));
   malla.setAttribute('normal', new THREE.Float32BufferAttribute(normales, 3));
   // Configura un material
-  var textura = new THREE.TextureLoader().load('images/pisometalico_1024.jpg');
+  var textura = new THREE.TextureLoader().load('images/wood512.jpg');
   var material = new THREE.MeshBasicMaterial({
     vertexColors: false, side: THREE.DoubleSide,
 
