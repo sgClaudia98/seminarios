@@ -24,7 +24,7 @@ var cameraControls;
 var angulo = -0.01;
 
 init();
-// loadBackground();
+loadBackground();
 loadRectangle(1.0, 1.5, 1);
 loadRectangle(1.0, 1.5, -0.5);
 render();
@@ -45,10 +45,10 @@ function init() {
   cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
   cameraControls.target.set(0, 0, 0);
 
-  window.addEventListener('resize', updateAspectRatio);
 }
 
 function loadBackground() {
+  var malla = new THREE.BufferGeometry();
   var VBack = [
     -24.0, 0.0, 0.0,
     24.0, 0.0, 0.0,
@@ -56,7 +56,22 @@ function loadBackground() {
     24.0, 48.0, 0.0,
   ];
 
-  scene.add(rectangle);
+
+  malla.setAttribute('position', new THREE.Float32BufferAttribute(VBack, 3));
+  // Configura un material
+  var textura = new THREE.TextureLoader().load('images/pisometalico_1024.jpg');
+  var material = new THREE.MeshBasicMaterial({
+    vertexColors: false, side: THREE.DoubleSide,
+
+    map: textura,
+  });
+
+  // Construye el objeto grafico 
+  console.log(malla);   //-> Puedes consultar la estructura del objeto
+  background = new THREE.Mesh(malla, material);
+
+  // Añade el objeto grafico a la escena
+  scene.add(background);
 }
 
 function loadRectangle(ladoA, ladoB, offsetA) {
@@ -106,11 +121,6 @@ function loadRectangle(ladoA, ladoB, offsetA) {
   scene.add(rectangle);
 }
 
-function updateAspectRatio() {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-}
 
 function update() {
   // Cambios para actualizar la camara segun mvto del raton
