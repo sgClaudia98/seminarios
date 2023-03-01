@@ -56,8 +56,14 @@ function loadBackground() {
     24.0, 48.0, 0.0,
   ];
 
+  var normales = [ // 24 x3
+    0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,      // Front
+  ];
+
+
 
   malla.setAttribute('position', new THREE.Float32BufferAttribute(VBack, 3));
+  malla.setAttribute('normal', new THREE.Float32BufferAttribute(normales, 3));
   // Configura un material
   var textura = new THREE.TextureLoader().load('images/pisometalico_1024.jpg');
   var material = new THREE.MeshBasicMaterial({
